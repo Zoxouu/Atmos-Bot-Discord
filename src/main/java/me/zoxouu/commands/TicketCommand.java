@@ -246,6 +246,7 @@ public class TicketCommand extends ListenerAdapter {
 
     private TextChannel createTicket(Guild guild, String title, User user) {
         return guild.createTextChannel(title)
+                .addRolePermissionOverride(guild.getRoleById("1173594455987728425").getIdLong(), null , Arrays.stream(Permission.values()).toList())
                 .addMemberPermissionOverride(guild.getMemberById(user.getIdLong()).getIdLong(), Collections.singleton(Permission.VIEW_CHANNEL), Collections.singleton(Permission.MESSAGE_SEND))
                 .setParent(guild.getCategoryById(Main.getConfig().getTicketConfig().categoryId()))
                 .complete();
